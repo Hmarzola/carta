@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { Heart, Lock, ArrowLeft, Sparkles, Music, X, Star } from "lucide-react";
-import { motion } from "framer-motion";
 
 export default function RomanticLovePage() {
   const [currentScreen, setCurrentScreen] = useState<"password" | "letter">(
@@ -50,7 +49,7 @@ export default function RomanticLovePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-rose-400 via-pink-500 to-purple-600 relative overflow-hidden">
       {/* Efecto mágico de fondo mejorado */}
-      <div className="absolute inset-0 bg-gradient-to-r from-pink-500/20 via-purple-500/30 to-rose-500/20 animate-pulse" />
+      <div className="absolute inset-0 bg-gradient-to-r from-pink-500/20 via-purple-500/30 to-rose-500/20 " />
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-pink-400/20 rounded-full blur-3xl animate-float" />
         <div
@@ -73,7 +72,7 @@ export default function RomanticLovePage() {
             <div className="relative">
               <Music className="w-16 h-16 text-rose-300 mx-auto mb-6 animate-bounce" />
               <div className="absolute -top-2 -right-2">
-                <Heart className="w-8 h-8 text-pink-400 fill-current animate-pulse" />
+                <Heart className="w-8 h-8 text-pink-400 fill-current " />
               </div>
             </div>
             <h3 className="text-3xl font-bold text-white mb-4 font-serif">
@@ -86,7 +85,7 @@ export default function RomanticLovePage() {
               {[...Array(5)].map((_, i) => (
                 <Heart
                   key={i}
-                  className="w-4 h-4 text-pink-300 fill-current mx-1 animate-pulse"
+                  className="w-4 h-4 text-pink-300 fill-current mx-1 "
                   style={{ animationDelay: `${i * 0.2}s` }}
                 />
               ))}
@@ -124,45 +123,44 @@ function PasswordScreen({
   onCheck: () => void;
 }) {
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8, y: 50 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className={`bg-white/20 backdrop-blur-2xl rounded-3xl p-10 max-w-md w-full border border-white/30 shadow-2xl relative overflow-hidden animate-glow ${
+    <div className="min-h-screen flex items-center justify-center p-2 sm:p-4">
+      <div
+        className={`bg-white/20 backdrop-blur-2xl rounded-3xl p-4 sm:p-8 md:p-10 max-w-md w-full border border-white/30 shadow-2xl relative overflow-hidden mx-2 ${
           shake ? "animate-pulse" : ""
         }`}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-pulse pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent  pointer-events-none" />
 
         {/* Romantic Image */}
-        <div className="text-center mb-8">
-          <div className="w-80 h-48 mx-auto mb-6 rounded-3xl overflow-hidden shadow-xl border-4 border-white/50 relative">
+        <div className="text-center mb-6 sm:mb-8">
+          <div className="w-full max-w-xs sm:max-w-sm h-40 sm:h-48 mx-auto mb-4 sm:mb-6 rounded-3xl overflow-hidden shadow-xl border-4 border-white/50 relative">
             <img
               src="./IMG_20250816_143902792_HDR_PORTRAIT.jpg"
               alt="Te quiero - Mensaje romántico"
-              className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+              className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
           </div>
         </div>
 
-        <div className="text-center mb-10">
+        <div className="text-center mb-6 sm:mb-8 md:mb-10">
           <div className="relative inline-block">
-            <Lock className="w-10 h-10 text-rose-300 mx-auto mb-4 animate-pulse" />
+            <Lock className="w-8 h-8 sm:w-10 sm:h-10 text-rose-300 mx-auto mb-3 sm:mb-4" />
             <div className="absolute -top-1 -right-1">
-              <Heart className="w-4 h-4 text-pink-400 fill-current animate-bounce" />
+              <Heart className="w-3 h-3 sm:w-4 sm:h-4 text-pink-400 fill-current animate-bounce" />
             </div>
           </div>
-          <h2 className="text-4xl font-bold text-white mb-3 font-serif text-balance">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2 sm:mb-3 font-serif text-balance">
             Adivina la contraseña
           </h2>
-          <p className="text-rose-200 text-xl font-medium">mi niña 💕</p>
+          <p className="text-rose-200 text-lg sm:text-xl font-medium">
+            mi niña 💕
+          </p>
           <div className="mt-2 flex justify-center space-x-1">
             {[...Array(3)].map((_, i) => (
               <div
                 key={i}
-                className="w-2 h-2 bg-pink-300 rounded-full animate-pulse"
+                className="w-2 h-2 bg-pink-300 rounded-full "
                 style={{ animationDelay: `${i * 0.3}s` }}
               />
             ))}
@@ -176,42 +174,42 @@ function PasswordScreen({
           <div className="mt-2 h-1 bg-gradient-to-r from-rose-400 to-pink-500 rounded-full" />
         </div>
 
-        <div className="grid grid-cols-3 gap-4 mb-8">
+        <div className="grid grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8">
           {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
             <button
               key={num}
               onClick={() => onDigit(num.toString())}
-              className="bg-white/95 hover:bg-white text-gray-800 font-bold py-5 px-4 rounded-2xl transition-all duration-300 hover:scale-110 hover:shadow-xl active:scale-95 border border-white/50 backdrop-blur-sm"
+              className="bg-white/95 hover:bg-white text-gray-800 font-bold py-3 sm:py-4 md:py-5 px-3 sm:px-4 rounded-2xl transition-all duration-300 border border-white/50 backdrop-blur-sm"
             >
-              <span className="text-2xl">{num}</span>
+              <span className="text-xl sm:text-2xl">{num}</span>
             </button>
           ))}
           <button
             onClick={onCheck}
-            className="bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-bold py-5 px-4 rounded-2xl transition-all duration-300 hover:scale-110 hover:shadow-xl active:scale-95 border border-white/30"
+            className="bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-bold py-3 sm:py-4 md:py-5 px-3 sm:px-4 rounded-2xl transition-all duration-300 border border-white/30"
           >
-            <span className="text-2xl">✓</span>
+            <span className="text-xl sm:text-2xl">✓</span>
           </button>
           <button
             onClick={() => onDigit("0")}
-            className="bg-white/95 hover:bg-white text-gray-800 font-bold py-5 px-4 rounded-2xl transition-all duration-300 hover:scale-110 hover:shadow-xl active:scale-95 border border-white/50 backdrop-blur-sm"
+            className="bg-white/95 hover:bg-white text-gray-800 font-bold py-3 sm:py-4 md:py-5 px-3 sm:px-4 rounded-2xl transition-all duration-300 border border-white/50 backdrop-blur-sm"
           >
-            <span className="text-2xl">0</span>
+            <span className="text-xl sm:text-2xl">0</span>
           </button>
           <button
             onClick={onDelete}
-            className="bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-700 text-white font-bold py-5 px-4 rounded-2xl transition-all duration-300 hover:scale-110 hover:shadow-xl active:scale-95 border border-white/30"
+            className="bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-700 text-white font-bold py-3 sm:py-4 md:py-5 px-3 sm:px-4 rounded-2xl transition-all duration-300 border border-white/30"
           >
-            <span className="text-2xl">⌫</span>
+            <span className="text-xl sm:text-2xl">⌫</span>
           </button>
         </div>
 
-        <div className="text-center bg-white/20 backdrop-blur-lg rounded-2xl p-4 border border-white/30">
+        <div className="text-center bg-white/20 backdrop-blur-lg rounded-2xl p-3 sm:p-4 border border-white/30">
           <p className="text-rose-200 text-sm font-medium">
             💡 Pista: Nuestros cumpleaños (DDMMDDMM)
           </p>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }
@@ -250,120 +248,70 @@ function LoveLetterScreen({ onBack }: { onBack: () => void }) {
 
       <div className="min-h-screen flex items-center justify-center p-4">
         <div className="bg-white/98 backdrop-blur-sm rounded-3xl p-12 max-w-4xl w-full shadow-2xl border border-white/50 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-rose-200/30 to-transparent animate-pulse pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-rose-200/30 to-transparent  pointer-events-none" />
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-left mb-10"
-          >
+          <div className="text-left mb-10">
             <p className="text-gray-600 text-xl mb-3 font-medium">
               📅 29 Agosto 2025
             </p>
-            <motion.h3
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
-              className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-purple-600 font-serif mb-6 text-balance animate-shimmer"
-            >
+            <h3 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-purple-600 font-serif mb-6 text-balance ">
               💌 Para Mi Querida Nikol
-            </motion.h3>
+            </h3>
             <div className="w-24 h-1 bg-gradient-to-r from-rose-400 to-purple-500 rounded-full" />
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.7, duration: 0.8 }}
-            className="text-center mb-10 p-8 bg-gradient-to-r from-rose-100 to-purple-100 rounded-3xl border border-rose-200/50 shadow-inner"
-          >
+          <div className="text-center mb-10 p-8 bg-gradient-to-r from-rose-100 to-purple-100 rounded-3xl border border-rose-200/50 shadow-inner">
             <div className="flex justify-center mb-4">
               {[...Array(5)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 0.9 + i * 0.1, duration: 0.3 }}
-                >
+                <div key={i}>
                   <Heart
-                    className="w-6 h-6 text-rose-400 fill-current mx-1 animate-pulse"
+                    className="w-6 h-6 text-rose-400 fill-current mx-1 "
                     style={{ animationDelay: `${i * 0.2}s` }}
                   />
-                </motion.div>
+                </div>
               ))}
             </div>
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.2, duration: 1 }}
-              className="text-3xl font-serif italic text-purple-700 font-bold text-balance leading-relaxed"
-            >
+            <p className="text-3xl font-serif italic text-purple-700 font-bold text-balance leading-relaxed">
               "En cada latido de mi corazón, hay una palabra que dice tu nombre"
               💕
-            </motion.p>
-          </motion.div>
+            </p>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.5, duration: 0.8 }}
-            className="space-y-8 text-gray-700 text-xl leading-relaxed"
-          >
-            <motion.p
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 1.7, duration: 0.8 }}
-              className="text-balance font-medium"
-            >
+          <div className="space-y-8 text-gray-700 text-xl leading-relaxed">
+            <p className="text-balance font-medium">
               Quiero que sepas lo inmensamente feliz que soy por tenerte en mi
               vida. Desde que llegaste, todo cambió para mejor. Me haces sentir
               amado, cuidado y acompañado de una forma que nunca antes había
               experimentado.
-            </motion.p>
+            </p>
 
-            <motion.p
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 1.9, duration: 0.8 }}
-              className="text-balance font-medium"
-            >
+            <p className="text-balance font-medium">
               A tu lado aprendí lo que es el amor verdadero, ese que se
               demuestra con acciones, con palabras sinceras y con esos pequeños
               detalles que hacen la diferencia. Gracias por estar siempre
               conmigo, por darme tu tiempo, tu cariño infinito y tu comprensión.
-            </motion.p>
+            </p>
 
-            <motion.p
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 2.1, duration: 0.8 }}
-              className="text-balance font-medium"
-            >
+            <p className="text-balance font-medium">
               No sé cómo explicarlo con palabras, pero contigo mi corazón está
               en completa paz. Eres mi alegría diaria, la razón de tantas
               sonrisas y la luz que ilumina mis días más oscuros.
-            </motion.p>
+            </p>
 
-            <motion.p
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 2.1, duration: 0.8 }}
-              className="text-balance font-medium"
-            >
+            <p className="text-balance font-medium">
               Te amo mucho, gracias por estar a mi lado, aun cuando hay momentos
               que no son fáciles, en los cuales a veces siento que no puedo más,
               pero tu amor me da fuerzas para seguir adelante, siempre estaré
               contigo te amoooooo.
-            </motion.p>
-          </motion.div>
+            </p>
+          </div>
 
           <div className="text-center my-10 p-8 bg-gradient-to-r from-purple-100 to-rose-100 rounded-3xl border border-purple-200/50 shadow-inner">
             <div className="flex justify-center mb-4">
               {[...Array(7)].map((_, i) => (
                 <Star
                   key={i}
-                  className="w-5 h-5 text-yellow-400 fill-current mx-1 animate-pulse"
+                  className="w-5 h-5 text-yellow-400 fill-current mx-1 "
                   style={{ animationDelay: `${i * 0.15}s` }}
                 />
               ))}
@@ -373,29 +321,14 @@ function LoveLetterScreen({ onBack }: { onBack: () => void }) {
             </p>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2.3, duration: 0.8 }}
-            className="mb-10"
-          >
-            <motion.h4
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 2.5, duration: 0.8 }}
-              className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-purple-600 text-center mb-8 font-serif animate-shimmer"
-            >
+          <div className="mb-10">
+            <h4 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-purple-600 text-center mb-8 font-serif ">
               📸 Nuestros Momentos Especiales
-            </motion.h4>
+            </h4>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               {photos.map((photo, index) => (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.2, duration: 0.6 }}
-                  whileHover={{ scale: 1.05, rotate: 1 }}
-                  whileTap={{ scale: 0.95 }}
                   className="rounded-3xl overflow-hidden shadow-xl cursor-pointer border-4 border-white/50 relative group"
                   onClick={() => setSelectedImage(photo.src)}
                 >
@@ -424,10 +357,10 @@ function LoveLetterScreen({ onBack }: { onBack: () => void }) {
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
 
           <div className="text-center mb-10 p-6 bg-gradient-to-r from-rose-50 to-purple-50 rounded-3xl border border-rose-200/50">
             <div className="flex justify-center mb-4">
@@ -625,7 +558,7 @@ function FloatingStars() {
       {stars.map((star) => (
         <div
           key={star.id}
-          className="absolute animate-pulse"
+          className="absolute "
           style={{
             left: `${star.left}%`,
             top: `${star.top}%`,
@@ -679,7 +612,7 @@ function FloatingHearts() {
             top: "-50px",
           }}
         >
-          <Heart className="text-pink-300/80 fill-current animate-pulse" />
+          <Heart className="text-pink-300/80 fill-current " />
         </div>
       ))}
     </div>
@@ -734,16 +667,16 @@ function FloatingSparkles() {
 function AnimatedBackground() {
   return (
     <div className="fixed inset-0 pointer-events-none">
-      <div className="absolute inset-0 bg-gradient-to-r from-rose-500/20 via-pink-500/20 to-purple-500/20 animate-pulse" />
+      <div className="absolute inset-0 bg-gradient-to-r from-rose-500/20 via-pink-500/20 to-purple-500/20 " />
       <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-rose-400/15 rounded-full blur-3xl animate-bounce" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-400/15 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-400/15 rounded-full blur-3xl " />
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-pink-400/15 rounded-full blur-3xl animate-ping" />
       <div
         className="absolute top-1/3 right-1/3 w-64 h-64 bg-rose-300/10 rounded-full blur-2xl animate-bounce"
         style={{ animationDelay: "1s" }}
       />
       <div
-        className="absolute bottom-1/3 left-1/3 w-56 h-56 bg-purple-300/10 rounded-full blur-2xl animate-pulse"
+        className="absolute bottom-1/3 left-1/3 w-56 h-56 bg-purple-300/10 rounded-full blur-2xl "
         style={{ animationDelay: "2s" }}
       />
     </div>
