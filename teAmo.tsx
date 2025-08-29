@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Heart, Lock, ArrowLeft, Sparkles, Music, X, Star } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function RomanticLovePage() {
   const [currentScreen, setCurrentScreen] = useState<"password" | "letter">(
@@ -48,6 +49,19 @@ export default function RomanticLovePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-rose-400 via-pink-500 to-purple-600 relative overflow-hidden">
+      {/* Efecto mágico de fondo mejorado */}
+      <div className="absolute inset-0 bg-gradient-to-r from-pink-500/20 via-purple-500/30 to-rose-500/20 animate-pulse" />
+      <div className="absolute inset-0">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-pink-400/20 rounded-full blur-3xl animate-float" />
+        <div
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-400/25 rounded-full blur-3xl animate-float"
+          style={{ animationDelay: "2s" }}
+        />
+        <div
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-rose-400/15 rounded-full blur-3xl animate-float"
+          style={{ animationDelay: "4s" }}
+        />
+      </div>
       <FloatingHearts />
       <FloatingSparkles />
       <FloatingStars />
@@ -111,8 +125,11 @@ function PasswordScreen({
 }) {
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
-      <div
-        className={`bg-white/20 backdrop-blur-2xl rounded-3xl p-10 max-w-md w-full border border-white/30 shadow-2xl relative overflow-hidden ${
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8, y: 50 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className={`bg-white/20 backdrop-blur-2xl rounded-3xl p-10 max-w-md w-full border border-white/30 shadow-2xl relative overflow-hidden animate-glow ${
           shake ? "animate-pulse" : ""
         }`}
       >
@@ -194,7 +211,7 @@ function PasswordScreen({
             💡 Pista: Nuestros cumpleaños (DDMMDDMM)
           </p>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
@@ -204,7 +221,10 @@ function LoveLetterScreen({ onBack }: { onBack: () => void }) {
 
   const photos = [
     { src: "./IMG_20250518_201136.jpg", alt: "Momento especial juntos" },
-    { src: "./IMG_20250816_143902792_HDR_PORTRAIT.jpg", alt: "Retrato hermoso" },
+    {
+      src: "./IMG_20250816_143902792_HDR_PORTRAIT.jpg",
+      alt: "Retrato hermoso",
+    },
     { src: "./PXL_20250823_151835362.jpg", alt: "Recuerdo inolvidable" },
   ];
 
@@ -232,53 +252,99 @@ function LoveLetterScreen({ onBack }: { onBack: () => void }) {
         <div className="bg-white/98 backdrop-blur-sm rounded-3xl p-12 max-w-4xl w-full shadow-2xl border border-white/50 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-rose-200/30 to-transparent animate-pulse pointer-events-none" />
 
-          <div className="text-left mb-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="text-left mb-10"
+          >
             <p className="text-gray-600 text-xl mb-3 font-medium">
               📅 29 Agosto 2025
             </p>
-            <h3 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-purple-600 font-serif mb-6 text-balance">
+            <motion.h3
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+              className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-purple-600 font-serif mb-6 text-balance animate-shimmer"
+            >
               💌 Para Mi Querida Nikol
-            </h3>
+            </motion.h3>
             <div className="w-24 h-1 bg-gradient-to-r from-rose-400 to-purple-500 rounded-full" />
-          </div>
+          </motion.div>
 
-          <div className="text-center mb-10 p-8 bg-gradient-to-r from-rose-100 to-purple-100 rounded-3xl border border-rose-200/50 shadow-inner">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.7, duration: 0.8 }}
+            className="text-center mb-10 p-8 bg-gradient-to-r from-rose-100 to-purple-100 rounded-3xl border border-rose-200/50 shadow-inner"
+          >
             <div className="flex justify-center mb-4">
               {[...Array(5)].map((_, i) => (
-                <Heart
+                <motion.div
                   key={i}
-                  className="w-6 h-6 text-rose-400 fill-current mx-1 animate-pulse"
-                  style={{ animationDelay: `${i * 0.2}s` }}
-                />
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.9 + i * 0.1, duration: 0.3 }}
+                >
+                  <Heart
+                    className="w-6 h-6 text-rose-400 fill-current mx-1 animate-pulse"
+                    style={{ animationDelay: `${i * 0.2}s` }}
+                  />
+                </motion.div>
               ))}
             </div>
-            <p className="text-3xl font-serif italic text-purple-700 font-bold text-balance leading-relaxed">
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.2, duration: 1 }}
+              className="text-3xl font-serif italic text-purple-700 font-bold text-balance leading-relaxed"
+            >
               "En cada latido de mi corazón, hay una palabra que dice tu nombre"
               💕
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
-          <div className="space-y-8 text-gray-700 text-xl leading-relaxed">
-            <p className="text-balance font-medium">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.5, duration: 0.8 }}
+            className="space-y-8 text-gray-700 text-xl leading-relaxed"
+          >
+            <motion.p
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1.7, duration: 0.8 }}
+              className="text-balance font-medium"
+            >
               Quiero que sepas lo inmensamente feliz que soy por tenerte en mi
               vida. Desde que llegaste, todo cambió para mejor. Me haces sentir
               amado, cuidado y acompañado de una forma que nunca antes había
               experimentado.
-            </p>
+            </motion.p>
 
-            <p className="text-balance font-medium">
+            <motion.p
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1.9, duration: 0.8 }}
+              className="text-balance font-medium"
+            >
               A tu lado aprendí lo que es el amor verdadero, ese que se
               demuestra con acciones, con palabras sinceras y con esos pequeños
               detalles que hacen la diferencia. Gracias por estar siempre
               conmigo, por darme tu tiempo, tu cariño infinito y tu comprensión.
-            </p>
+            </motion.p>
 
-            <p className="text-balance font-medium">
+            <motion.p
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 2.1, duration: 0.8 }}
+              className="text-balance font-medium"
+            >
               No sé cómo explicarlo con palabras, pero contigo mi corazón está
               en completa paz. Eres mi alegría diaria, la razón de tantas
               sonrisas y la luz que ilumina mis días más oscuros.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
           <div className="text-center my-10 p-8 bg-gradient-to-r from-purple-100 to-rose-100 rounded-3xl border border-purple-200/50 shadow-inner">
             <div className="flex justify-center mb-4">
@@ -295,15 +361,30 @@ function LoveLetterScreen({ onBack }: { onBack: () => void }) {
             </p>
           </div>
 
-          <div className="mb-10">
-            <h4 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-purple-600 text-center mb-8 font-serif">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2.3, duration: 0.8 }}
+            className="mb-10"
+          >
+            <motion.h4
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 2.5, duration: 0.8 }}
+              className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-purple-600 text-center mb-8 font-serif animate-shimmer"
+            >
               📸 Nuestros Momentos Especiales
-            </h4>
+            </motion.h4>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               {photos.map((photo, index) => (
-                <div
+                <motion.div
                   key={index}
-                  className="rounded-3xl overflow-hidden shadow-xl hover:scale-105 transition-transform duration-500 cursor-pointer border-4 border-white/50 relative group"
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.2, duration: 0.6 }}
+                  whileHover={{ scale: 1.05, rotate: 1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="rounded-3xl overflow-hidden shadow-xl cursor-pointer border-4 border-white/50 relative group"
                   onClick={() => setSelectedImage(photo.src)}
                 >
                   <img
@@ -325,14 +406,16 @@ function LoveLetterScreen({ onBack }: { onBack: () => void }) {
                         </svg>
                       `)}`;
                     }}
-                    onLoad={() => console.log(`Successfully loaded image: ${photo.src}`)}
+                    onLoad={() =>
+                      console.log(`Successfully loaded image: ${photo.src}`)
+                    }
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           <div className="text-center mb-10 p-6 bg-gradient-to-r from-rose-50 to-purple-50 rounded-3xl border border-rose-200/50">
             <div className="flex justify-center mb-4">
@@ -386,10 +469,12 @@ function LoveLetterScreen({ onBack }: { onBack: () => void }) {
                   ]);
                   // Mostrar mensaje de error más amigable
                   const videoElement = e.target as HTMLVideoElement;
-                  videoElement.style.display = 'none';
-                  const errorDiv = document.createElement('div');
-                  errorDiv.className = 'flex items-center justify-center h-full bg-gray-200 text-gray-600';
-                  errorDiv.innerHTML = '🎬 Video no disponible<br>Intenta recargar la página';
+                  videoElement.style.display = "none";
+                  const errorDiv = document.createElement("div");
+                  errorDiv.className =
+                    "flex items-center justify-center h-full bg-gray-200 text-gray-600";
+                  errorDiv.innerHTML =
+                    "🎬 Video no disponible<br>Intenta recargar la página";
                   videoElement.parentElement?.appendChild(errorDiv);
                 }}
                 onLoadStart={() => console.log("Starting to load main video")}
@@ -415,9 +500,11 @@ function LoveLetterScreen({ onBack }: { onBack: () => void }) {
                   className="w-full h-48 object-cover"
                   poster="./IMG_20250518_201136.jpg"
                   onError={(e) => {
-                    console.error("Error loading video 1: /Snapchat-1780592114.mp4");
+                    console.error(
+                      "Error loading video 1: /Snapchat-1780592114.mp4"
+                    );
                     // Ocultar el video si no se puede cargar
-                    (e.target as HTMLVideoElement).style.display = 'none';
+                    (e.target as HTMLVideoElement).style.display = "none";
                   }}
                   onLoadStart={() => console.log("Loading video 1")}
                   preload="metadata"
@@ -432,9 +519,11 @@ function LoveLetterScreen({ onBack }: { onBack: () => void }) {
                   className="w-full h-48 object-cover"
                   poster="./PXL_20250823_151835362.jpg"
                   onError={(e) => {
-                    console.error("Error loading video 2: /VID-20250804-WA0000.mp4");
+                    console.error(
+                      "Error loading video 2: /VID-20250804-WA0000.mp4"
+                    );
                     // Ocultar el video si no se puede cargar
-                    (e.target as HTMLVideoElement).style.display = 'none';
+                    (e.target as HTMLVideoElement).style.display = "none";
                   }}
                   onLoadStart={() => console.log("Loading video 2")}
                   preload="metadata"
