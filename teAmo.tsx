@@ -344,6 +344,18 @@ function LoveLetterScreen({ onBack }: { onBack: () => void }) {
               en completa paz. Eres mi alegría diaria, la razón de tantas
               sonrisas y la luz que ilumina mis días más oscuros.
             </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 2.1, duration: 0.8 }}
+              className="text-balance font-medium"
+            >
+              Te amo mucho, gracias por estar a mi lado, aun cuando hay momentos
+              que no son fáciles, en los cuales a veces siento que no puedo más,
+              pero tu amor me da fuerzas para seguir adelante, siempre estaré
+              contigo te amoooooo.
+            </motion.p>
           </motion.div>
 
           <div className="text-center my-10 p-8 bg-gradient-to-r from-purple-100 to-rose-100 rounded-3xl border border-purple-200/50 shadow-inner">
