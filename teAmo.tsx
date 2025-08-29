@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Heart, Lock, ArrowLeft, Sparkles, Music, X, Star } from "lucide-react";
 
 export default function RomanticLovePage() {
@@ -216,6 +216,20 @@ function PasswordScreen({
 
 function LoveLetterScreen({ onBack }: { onBack: () => void }) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  // Reproducir audio automáticamente al cargar la pantalla
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (audioRef.current) {
+        audioRef.current.play().catch((error) => {
+          console.log("No se pudo reproducir el audio automáticamente:", error);
+        });
+      }
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const photos = [
     { src: "./IMG_20250518_201136.jpg", alt: "Momento especial juntos" },
@@ -391,7 +405,12 @@ function LoveLetterScreen({ onBack }: { onBack: () => void }) {
                   🎶 MILO J - M.A.I
                 </span>
               </div>
-              <audio controls className="w-full rounded-lg" preload="metadata">
+              <audio
+                ref={audioRef}
+                controls
+                className="w-full rounded-lg"
+                preload="metadata"
+              >
                 <source
                   src="./saim.co.za - MILO J - M.A.I (Video Oficial) (320 KBps).mp3"
                   type="audio/mpeg"
