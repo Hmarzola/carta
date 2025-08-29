@@ -1,59 +1,765 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/heart.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Carta de Amor 💕</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mi Amor Nikol 💖</title>
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap");
-      body {
-        font-family: "Inter", sans-serif;
-      }
-      .font-serif {
-        font-family: "Playfair Display", serif;
-      }
-
-      /* Animaciones mágicas personalizadas */
-      @keyframes shimmer {
-        100% {
-          transform: translateX(100%);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-      }
 
-      @keyframes float {
-        0%,
-        100% {
-          transform: translateY(0px);
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #ec4899;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
-        50% {
-          transform: translateY(-20px);
-        }
-      }
 
-      @keyframes glow {
-        0%,
-        100% {
-          box-shadow: 0 0 20px rgba(255, 192, 203, 0.5);
+        .screen {
+            display: none;
+            min-height: 100vh;
+            padding: 8px;
         }
-        50% {
-          box-shadow: 0 0 40px rgba(255, 192, 203, 0.8),
-            0 0 60px rgba(147, 51, 234, 0.5);
+
+        .screen.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-      }
 
-      .animate-float {
-        animation: float 6s ease-in-out infinite;
-      }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 24px;
+            padding: 16px;
+            max-width: 400px;
+            width: 100%;
+            border: 1px solid white;
+            margin: 8px;
+            position: relative;
+        }
 
-      .animate-glow {
-        animation: glow 3s ease-in-out infinite;
-      }
+        .container-large {
+            max-width: 1000px;
+            padding: 16px;
+        }
+
+        .image-container {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .romantic-image {
+            width: 100%;
+            max-width: 300px;
+            height: 160px;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 4px solid rgba(255, 255, 255, 0.5);
+            margin: 0 auto 16px;
+        }
+
+        .romantic-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .title-section {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .lock-icon {
+            width: 32px;
+            height: 32px;
+            background: #f472b6;
+            border-radius: 50%;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+        }
+
+        .main-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 8px;
+            font-family: serif;
+        }
+
+        .subtitle {
+            color: #fce7f3;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .password-display {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .password-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #6366f1;
+            letter-spacing: 8px;
+            margin-bottom: 8px;
+        }
+
+        .password-line {
+            height: 4px;
+            background: linear-gradient(to right, #f472b6, #ec4899);
+            border-radius: 2px;
+            width: 200px;
+            margin: 0 auto;
+        }
+
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .btn {
+            background: white;
+            color: #374151;
+            font-weight: bold;
+            padding: 12px;
+            border-radius: 16px;
+            border: 1px solid #d1d5db;
+            cursor: pointer;
+            font-size: 18px;
+            text-align: center;
+            user-select: none;
+        }
+
+        .btn:active {
+            background: #f3f4f6;
+        }
+
+        .btn-green {
+            background: #10b981;
+            color: white;
+            border: 1px solid #059669;
+        }
+
+        .btn-red {
+            background: #ef4444;
+            color: white;
+            border: 1px solid #dc2626;
+        }
+
+        .hint {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .hint-text {
+            color: #fce7f3;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* Pantalla de la carta */
+        .letter-container {
+            background: white;
+            border-radius: 24px;
+            padding: 16px;
+            max-width: 1000px;
+            width: 100%;
+            border: 1px solid #d1d5db;
+            margin: 8px;
+        }
+
+        .letter-header {
+            text-align: left;
+            margin-bottom: 32px;
+        }
+
+        .date {
+            color: #6b7280;
+            font-size: 18px;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .letter-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #7c3aed;
+            font-family: serif;
+            margin-bottom: 24px;
+        }
+
+        .title-line {
+            width: 96px;
+            height: 4px;
+            background: #7c3aed;
+            border-radius: 2px;
+        }
+
+        .quote-section {
+            text-align: center;
+            margin-bottom: 32px;
+            padding: 32px;
+            background: #f3e8ff;
+            border-radius: 24px;
+            border: 1px solid rgba(168, 85, 247, 0.2);
+        }
+
+        .hearts {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .heart {
+            color: #f472b6;
+            font-size: 20px;
+            margin: 0 4px;
+        }
+
+        .quote {
+            font-size: 24px;
+            font-style: italic;
+            color: #7c3aed;
+            font-weight: bold;
+            line-height: 1.5;
+            font-family: serif;
+        }
+
+        .content {
+            margin-bottom: 32px;
+        }
+
+        .paragraph {
+            color: #374151;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        .gallery-section {
+            margin-bottom: 32px;
+        }
+
+        .gallery-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #7c3aed;
+            text-align: center;
+            margin-bottom: 24px;
+            font-family: serif;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .photo-item {
+            border-radius: 24px;
+            overflow: hidden;
+            border: 4px solid rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .audio-section {
+            margin-bottom: 32px;
+        }
+
+        .audio-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #7c3aed;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .audio-container {
+            background: #f3e8ff;
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            margin-bottom: 16px;
+        }
+
+        .audio-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .music-icon {
+            color: #7c3aed;
+            margin-right: 8px;
+        }
+
+        .song-title {
+            color: #7c3aed;
+            font-weight: 500;
+        }
+
+        audio {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .youtube-link {
+            text-align: center;
+        }
+
+        .youtube-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 24px;
+            background: #ef4444;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .youtube-btn:hover {
+            background: #dc2626;
+        }
+
+        .youtube-icon {
+            margin-right: 8px;
+        }
+
+        .audio-note {
+            color: #7c3aed;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .final-quote {
+            text-align: center;
+            margin-bottom: 32px;
+            padding: 24px;
+            background: #fef7ff;
+            border-radius: 24px;
+            border: 1px solid rgba(168, 85, 247, 0.2);
+        }
+
+        .final-quote .quote {
+            font-size: 24px;
+            color: #7c3aed;
+        }
+
+        .back-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 0 auto;
+            padding: 16px 32px;
+            background: linear-gradient(to right, #f472b6, #7c3aed);
+            color: white;
+            font-weight: bold;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .back-btn:active {
+            opacity: 0.9;
+        }
+
+        /* Modal para imágenes */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .modal img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 24px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: -60px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        /* Responsive */
+        @media (min-width: 640px) {
+            .container {
+                padding: 32px;
+            }
+            
+            .container-large {
+                padding: 48px;
+            }
+            
+            .romantic-image {
+                height: 192px;
+            }
+            
+            .lock-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+            
+            .main-title {
+                font-size: 32px;
+            }
+            
+            .letter-title {
+                font-size: 48px;
+            }
+            
+            .keypad {
+                gap: 16px;
+            }
+            
+            .btn {
+                padding: 16px;
+                font-size: 20px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .letter-title {
+                font-size: 56px;
+            }
+        }
+
+        /* Animación de éxito */
+        .success {
+            background: #10b981 !important;
+            color: white;
+        }
+
+        .shake {
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
     </style>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+</head>
+<body>
+    <!-- Pantalla de contraseña -->
+    <div class="screen active" id="passwordScreen">
+        <div class="container">
+            <div class="image-container">
+                <div class="romantic-image">
+                    <img src="./IMG_20250816_143902792_HDR_PORTRAIT.jpg" alt="Te quiero - Mensaje romántico">
+                </div>
+            </div>
+
+            <div class="title-section">
+                <div class="lock-icon">🔒</div>
+                <h2 class="main-title">Adivina la contraseña</h2>
+                <p class="subtitle">mi niña 💕</p>
+            </div>
+
+            <div class="password-display">
+                <div class="password-text" id="passwordDisplay">••••••••</div>
+                <div class="password-line"></div>
+            </div>
+
+            <div class="keypad">
+                <button class="btn" onclick="addDigit('1')">1</button>
+                <button class="btn" onclick="addDigit('2')">2</button>
+                <button class="btn" onclick="addDigit('3')">3</button>
+                <button class="btn" onclick="addDigit('4')">4</button>
+                <button class="btn" onclick="addDigit('5')">5</button>
+                <button class="btn" onclick="addDigit('6')">6</button>
+                <button class="btn" onclick="addDigit('7')">7</button>
+                <button class="btn" onclick="addDigit('8')">8</button>
+                <button class="btn" onclick="addDigit('9')">9</button>
+                <button class="btn btn-green" onclick="checkPassword()">✓</button>
+                <button class="btn" onclick="addDigit('0')">0</button>
+                <button class="btn btn-red" onclick="deleteDigit()">⌫</button>
+            </div>
+
+            <div class="hint">
+                <p class="hint-text">💡 Pista: Nuestros cumpleaños (DDMMDDMM)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pantalla de la carta -->
+    <div class="screen" id="letterScreen">
+        <div class="letter-container">
+            <div class="letter-header">
+                <p class="date">📅 29 Agosto 2025</p>
+                <h3 class="letter-title">💌 Para Mi Querida Nikol</h3>
+                <div class="title-line"></div>
+            </div>
+
+            <div class="quote-section">
+                <div class="hearts">
+                    <span class="heart">♥</span>
+                    <span class="heart">♥</span>
+                    <span class="heart">♥</span>
+                    <span class="heart">♥</span>
+                    <span class="heart">♥</span>
+                </div>
+                <p class="quote">"En cada latido de mi corazón, hay una palabra que dice tu nombre" 💕</p>
+            </div>
+
+            <div class="content">
+                <p class="paragraph">
+                    Quiero que sepas lo inmensamente feliz que soy por tenerte en mi vida. Desde que llegaste, 
+                    todo cambió para mejor. Me haces sentir amado, cuidado y acompañado de una forma que nunca 
+                    antes había experimentado.
+                </p>
+
+                <p class="paragraph">
+                    A tu lado aprendí lo que es el amor verdadero, ese que se demuestra con acciones, con palabras 
+                    sinceras y con esos pequeños detalles que hacen la diferencia. Gracias por estar siempre conmigo, 
+                    por darme tu tiempo, tu cariño infinito y tu comprensión.
+                </p>
+
+                <p class="paragraph">
+                    No sé cómo explicarlo con palabras, pero contigo mi corazón está en completa paz. Eres mi alegría 
+                    diaria, la razón de tantas sonrisas y la luz que ilumina mis días más oscuros.
+                </p>
+            </div>
+
+            <div class="gallery-section">
+                <h4 class="gallery-title">📸 Nuestros Momentos Especiales</h4>
+                <div class="photo-grid">
+                    <div class="photo-item" onclick="openModal('./IMG_20250518_201136.jpg')">
+                        <img src="./IMG_20250518_201136.jpg" alt="Momento especial juntos">
+                    </div>
+                    <div class="photo-item" onclick="openModal('./IMG_20250816_143902792_HDR_PORTRAIT.jpg')">
+                        <img src="./IMG_20250816_143902792_HDR_PORTRAIT.jpg" alt="Retrato hermoso">
+                    </div>
+                    <div class="photo-item" onclick="openModal('./PXL_20250823_151835362.jpg')">
+                        <img src="./PXL_20250823_151835362.jpg" alt="Recuerdo inolvidable">
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-quote">
+                <div class="hearts">
+                    <span class="heart">♥</span>
+                    <span class="heart">♥</span>
+                    <span class="heart">♥</span>
+                    <span class="heart">♥</span>
+                    <span class="heart">♥</span>
+                    <span class="heart">♥</span>
+                    <span class="heart">♥</span>
+                    <span class="heart">♥</span>
+                    <span class="heart">♥</span>
+                </div>
+                <p class="quote">Te amo con todo mi ser, profundamente y para siempre. ♡</p>
+            </div>
+
+            <!-- Sección de Audio -->
+            <div class="audio-section">
+                <h4 class="audio-title">🎵 Una Canción Especial Para Ti</h4>
+                
+                <div class="audio-container">
+                    <div class="audio-header">
+                        <span class="music-icon">🎶</span>
+                        <span class="song-title">MILO J - M.A.I</span>
+                    </div>
+                    <audio id="romanticAudio" controls preload="metadata">
+                        <source src="./saim.co.za - MILO J - M.A.I (Video Oficial) (320 KBps).mp3" type="audio/mpeg">
+                        Tu navegador no soporta el elemento de audio.
+                    </audio>
+                </div>
+
+                <div class="youtube-link">
+                    <a href="https://www.youtube.com/watch?v=MldGX_mbS-o" target="_blank" class="youtube-btn">
+                        <span class="youtube-icon">📺</span>
+                        Ver en YouTube
+                    </a>
+                    <p class="audio-note">💕 Esta canción me recuerda a ti 💕</p>
+                </div>
+            </div>
+
+            <button class="back-btn" onclick="goBack()">
+                <span>←</span>
+                <span>Volver al Inicio</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal para imágenes -->
+    <div class="modal" id="imageModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">×</button>
+            <img id="modalImage" src="" alt="Imagen ampliada">
+        </div>
+    </div>
+
+    <script>
+        let password = '';
+        const correctPassword = '15020110';
+
+        function addDigit(digit) {
+            if (password.length < 8) {
+                password += digit;
+                updatePasswordDisplay();
+            }
+        }
+
+        function deleteDigit() {
+            password = password.slice(0, -1);
+            updatePasswordDisplay();
+        }
+
+        function updatePasswordDisplay() {
+            const display = document.getElementById('passwordDisplay');
+            const displayText = password.padEnd(8, '•');
+            display.textContent = displayText;
+        }
+
+        function checkPassword() {
+            if (password.length === 8) {
+                if (password === correctPassword) {
+                    // Éxito
+                    const container = document.querySelector('.container');
+                    container.classList.add('success');
+                    
+                    setTimeout(() => {
+                        showLetterScreen();
+                        // Reproducir audio automáticamente después de 1 segundo
+                        setTimeout(() => {
+                            const audio = document.getElementById('romanticAudio');
+                            if (audio) {
+                                audio.play().catch(error => {
+                                    console.log('No se pudo reproducir el audio automáticamente:', error);
+                                });
+                            }
+                        }, 1000);
+                    }, 2500);
+                } else {
+                    // Error
+                    const container = document.querySelector('.container');
+                    container.classList.add('shake');
+                    setTimeout(() => {
+                        container.classList.remove('shake');
+                        password = '';
+                        updatePasswordDisplay();
+                    }, 500);
+                }
+            }
+        }
+
+        function showLetterScreen() {
+            document.getElementById('passwordScreen').classList.remove('active');
+            document.getElementById('letterScreen').classList.add('active');
+        }
+
+        function goBack() {
+            document.getElementById('letterScreen').classList.remove('active');
+            document.getElementById('passwordScreen').classList.add('active');
+            password = '';
+            updatePasswordDisplay();
+            const container = document.querySelector('.container');
+            container.classList.remove('success');
+            
+            // Pausar audio
+            const audio = document.getElementById('romanticAudio');
+            if (audio) {
+                audio.pause();
+                audio.currentTime = 0;
+            }
+        }
+
+        function openModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            modalImage.src = imageSrc;
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+        }
+
+        // Cerrar modal al hacer click fuera de la imagen
+        document.getElementById('imageModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Keyboard support
+        document.addEventListener('keydown', function(e) {
+            if (document.getElementById('passwordScreen').classList.contains('active')) {
+                if (e.key >= '0' && e.key <= '9') {
+                    addDigit(e.key);
+                } else if (e.key === 'Backspace') {
+                    deleteDigit();
+                } else if (e.key === 'Enter') {
+                    checkPassword();
+                }
+            } else if (document.getElementById('imageModal').classList.contains('active')) {
+                if (e.key === 'Escape') {
+                    closeModal();
+                }
+            }
+        });
+    </script>
+</body>
 </html>
