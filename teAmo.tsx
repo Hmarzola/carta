@@ -201,22 +201,12 @@ function PasswordScreen({
 
 function LoveLetterScreen({ onBack }: { onBack: () => void }) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [imageErrors, setImageErrors] = useState<Set<string>>(new Set());
 
   const photos = [
     { src: "/IMG_20250518_201136.jpg", alt: "Momento especial juntos" },
     { src: "/IMG_20250816_143902792_HDR_PORTRAIT.jpg", alt: "Retrato hermoso" },
     { src: "/PXL_20250823_151835362.jpg", alt: "Recuerdo inolvidable" },
   ];
-
-  const handleImageError = (src: string) => {
-    console.error(`Error loading image: ${src}`);
-    setImageErrors((prev) => new Set([...prev, src]));
-  };
-
-  const handleImageLoad = (src: string) => {
-    console.log(`Successfully loaded image: ${src}`);
-  };
 
   return (
     <>
@@ -321,7 +311,6 @@ function LoveLetterScreen({ onBack }: { onBack: () => void }) {
                     alt={photo.alt}
                     onError={(e) => {
                       console.error(`Error loading image: ${photo.src}`);
-                      handleImageError(photo.src);
                       (
                         e.target as HTMLImageElement
                       ).src = `data:image/svg+xml;base64,${btoa(`
@@ -336,7 +325,7 @@ function LoveLetterScreen({ onBack }: { onBack: () => void }) {
                         </svg>
                       `)}`;
                     }}
-                    onLoad={() => handleImageLoad(photo.src)}
+                    onLoad={() => console.log(`Successfully loaded image: ${photo.src}`)}
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
