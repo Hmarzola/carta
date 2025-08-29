@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Heart, Lock, ArrowLeft, Sparkles, Music } from "lucide-react";
+import { Heart, Lock, ArrowLeft, Sparkles, Music, X } from "lucide-react";
 
 export default function RomanticLovePage() {
   const [currentScreen, setCurrentScreen] = useState<"password" | "letter">(
@@ -105,7 +105,7 @@ function PasswordScreen({
         <div className="text-center mb-6">
           <div className="w-80 h-48 mx-auto mb-6 rounded-2xl overflow-hidden shadow-lg">
             <img
-              src="/romantic-love-message-with-hearts-and-flowers-in-s.png"
+              src="/IMG_20250816_143902792_HDR_PORTRAIT.jpg"
               alt="Te quiero - Mensaje romántico"
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
             />
@@ -168,7 +168,35 @@ function PasswordScreen({
 }
 
 function LoveLetterScreen({ onBack }: { onBack: () => void }) {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  
+  const photos = [
+    { src: "/IMG_20250518_201136.jpg", alt: "Momento especial juntos" },
+    { src: "/IMG_20250816_143902792_HDR_PORTRAIT.jpg", alt: "Retrato hermoso" },
+    { src: "/PXL_20250823_151835362.jpg", alt: "Recuerdo inolvidable" }
+  ];
+
   return (
+    <>
+      {/* Modal for Image Gallery */}
+      {selectedImage && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="relative max-w-4xl max-h-full">
+            <button
+              onClick={() => setSelectedImage(null)}
+              className="absolute -top-12 right-0 text-white hover:text-pink-300 transition-colors z-10"
+            >
+              <X className="w-8 h-8" />
+            </button>
+            <img
+              src={selectedImage}
+              alt="Imagen ampliada"
+              className="max-w-full max-h-[90vh] object-contain rounded-2xl shadow-2xl"
+            />
+          </div>
+        </div>
+      )}
+    
     <div className="min-h-screen flex items-center justify-center p-4">
       <div className="bg-white/95 backdrop-blur-sm rounded-3xl p-8 max-w-4xl w-full shadow-2xl border border-white/30 relative overflow-hidden">
         {/* Shimmer Effect */}
@@ -220,6 +248,28 @@ function LoveLetterScreen({ onBack }: { onBack: () => void }) {
           </p>
         </div>
 
+        {/* Photo Gallery */}
+        <div className="mb-8">
+          <h4 className="text-2xl font-bold text-purple-600 text-center mb-6">
+            📸 Nuestros Momentos Especiales
+          </h4>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            {photos.map((photo, index) => (
+              <div 
+                key={index}
+                className="rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
+                onClick={() => setSelectedImage(photo.src)}
+              >
+                <img
+                  src={photo.src}
+                  alt={photo.alt}
+                  className="w-full h-64 object-cover"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Final Message */}
         <div className="text-center mb-8">
           <p className="text-2xl font-bold text-purple-600">
@@ -227,14 +277,51 @@ function LoveLetterScreen({ onBack }: { onBack: () => void }) {
           </p>
         </div>
 
-        {/* Video Container */}
-        <div className="relative w-full aspect-video mb-8 rounded-2xl overflow-hidden shadow-lg">
-          <iframe
-            src="https://www.youtube.com/embed/jMNRg3nHwU0?start=14&autoplay=1&rel=0&mute=0"
-            className="w-full h-full"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
+        {/* Personal Video Container */}
+        <div className="mb-8">
+          <h4 className="text-2xl font-bold text-purple-600 text-center mb-4">
+            🎬 Un Video Especial Para Ti
+          </h4>
+          <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-lg">
+            <video
+              controls
+              className="w-full h-full object-cover"
+              poster="/IMG_20250816_143902792_HDR_PORTRAIT.jpg"
+            >
+              <source src="/VID-20250528-WA0043.mp4" type="video/mp4" />
+              <source src="/Snapchat-1780592114.mp4" type="video/mp4" />
+              Tu navegador no soporta el elemento video.
+            </video>
+          </div>
+        </div>
+
+        {/* Video Gallery */}
+        <div className="mb-8">
+          <h4 className="text-2xl font-bold text-purple-600 text-center mb-4">
+            🎥 Más Recuerdos En Video
+          </h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="rounded-2xl overflow-hidden shadow-lg">
+              <video
+                controls
+                className="w-full h-48 object-cover"
+                poster="/IMG_20250518_201136.jpg"
+              >
+                <source src="/VID_20250823_152404726.mp4" type="video/mp4" />
+                Tu navegador no soporta el elemento video.
+              </video>
+            </div>
+            <div className="rounded-2xl overflow-hidden shadow-lg">
+              <video
+                controls
+                className="w-full h-48 object-cover"
+                poster="/PXL_20250823_151835362.jpg"
+              >
+                <source src="/VID-20250804-WA0000.mp4" type="video/mp4" />
+                Tu navegador no soporta el elemento video.
+              </video>
+            </div>
+          </div>
         </div>
 
         {/* Back Button */}
@@ -249,6 +336,7 @@ function LoveLetterScreen({ onBack }: { onBack: () => void }) {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
