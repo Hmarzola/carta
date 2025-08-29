@@ -122,7 +122,7 @@ function PasswordScreen({
         <div className="text-center mb-8">
           <div className="w-80 h-48 mx-auto mb-6 rounded-3xl overflow-hidden shadow-xl border-4 border-white/50 relative">
             <img
-              src="/IMG_20250816_143902792_HDR_PORTRAIT.jpg"
+              src="./IMG_20250816_143902792_HDR_PORTRAIT.jpg"
               alt="Te quiero - Mensaje romántico"
               className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
             />
@@ -203,9 +203,9 @@ function LoveLetterScreen({ onBack }: { onBack: () => void }) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const photos = [
-    { src: "/IMG_20250518_201136.jpg", alt: "Momento especial juntos" },
-    { src: "/IMG_20250816_143902792_HDR_PORTRAIT.jpg", alt: "Retrato hermoso" },
-    { src: "/PXL_20250823_151835362.jpg", alt: "Recuerdo inolvidable" },
+    { src: "./IMG_20250518_201136.jpg", alt: "Momento especial juntos" },
+    { src: "./IMG_20250816_143902792_HDR_PORTRAIT.jpg", alt: "Retrato hermoso" },
+    { src: "./PXL_20250823_151835362.jpg", alt: "Recuerdo inolvidable" },
   ];
 
   return (
@@ -377,7 +377,7 @@ function LoveLetterScreen({ onBack }: { onBack: () => void }) {
               <video
                 controls
                 className="w-full h-full object-cover"
-                poster="/IMG_20250816_143902792_HDR_PORTRAIT.jpg"
+                poster="./IMG_20250816_143902792_HDR_PORTRAIT.jpg"
                 onError={(e) => {
                   console.error("Error loading main video");
                   console.log("Available videos:", [
@@ -396,8 +396,8 @@ function LoveLetterScreen({ onBack }: { onBack: () => void }) {
                 onCanPlay={() => console.log("Main video can play")}
                 preload="metadata"
               >
-                <source src="/VID-20250528-WA0043.mp4" type="video/mp4" />
-                <source src="/Snapchat-1780592114.mp4" type="video/mp4" />
+                <source src="./VID-20250528-WA0043.mp4" type="video/mp4" />
+                <source src="./Snapchat-1780592114.mp4" type="video/mp4" />
                 Tu navegador no soporta el elemento video.
               </video>
             </div>
@@ -413,7 +413,7 @@ function LoveLetterScreen({ onBack }: { onBack: () => void }) {
                 <video
                   controls
                   className="w-full h-48 object-cover"
-                  poster="/IMG_20250518_201136.jpg"
+                  poster="./IMG_20250518_201136.jpg"
                   onError={(e) => {
                     console.error("Error loading video 1: /Snapchat-1780592114.mp4");
                     // Ocultar el video si no se puede cargar
@@ -422,7 +422,7 @@ function LoveLetterScreen({ onBack }: { onBack: () => void }) {
                   onLoadStart={() => console.log("Loading video 1")}
                   preload="metadata"
                 >
-                  <source src="/Snapchat-1780592114.mp4" type="video/mp4" />
+                  <source src="./Snapchat-1780592114.mp4" type="video/mp4" />
                   Tu navegador no soporta el elemento video.
                 </video>
               </div>
@@ -430,7 +430,7 @@ function LoveLetterScreen({ onBack }: { onBack: () => void }) {
                 <video
                   controls
                   className="w-full h-48 object-cover"
-                  poster="/PXL_20250823_151835362.jpg"
+                  poster="./PXL_20250823_151835362.jpg"
                   onError={(e) => {
                     console.error("Error loading video 2: /VID-20250804-WA0000.mp4");
                     // Ocultar el video si no se puede cargar
@@ -439,7 +439,7 @@ function LoveLetterScreen({ onBack }: { onBack: () => void }) {
                   onLoadStart={() => console.log("Loading video 2")}
                   preload="metadata"
                 >
-                  <source src="/VID-20250804-WA0000.mp4" type="video/mp4" />
+                  <source src="./VID-20250804-WA0000.mp4" type="video/mp4" />
                   Tu navegador no soporta el elemento video.
                 </video>
               </div>
