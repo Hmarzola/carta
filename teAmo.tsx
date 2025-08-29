@@ -378,15 +378,23 @@ function LoveLetterScreen({ onBack }: { onBack: () => void }) {
                 controls
                 className="w-full h-full object-cover"
                 poster="/IMG_20250816_143902792_HDR_PORTRAIT.jpg"
-                onError={() => {
+                onError={(e) => {
                   console.error("Error loading main video");
                   console.log("Available videos:", [
                     "/VID-20250528-WA0043.mp4",
                     "/Snapchat-1780592114.mp4",
                   ]);
+                  // Mostrar mensaje de error más amigable
+                  const videoElement = e.target as HTMLVideoElement;
+                  videoElement.style.display = 'none';
+                  const errorDiv = document.createElement('div');
+                  errorDiv.className = 'flex items-center justify-center h-full bg-gray-200 text-gray-600';
+                  errorDiv.innerHTML = '🎬 Video no disponible<br>Intenta recargar la página';
+                  videoElement.parentElement?.appendChild(errorDiv);
                 }}
                 onLoadStart={() => console.log("Starting to load main video")}
                 onCanPlay={() => console.log("Main video can play")}
+                preload="metadata"
               >
                 <source src="/VID-20250528-WA0043.mp4" type="video/mp4" />
                 <source src="/Snapchat-1780592114.mp4" type="video/mp4" />
@@ -406,14 +414,15 @@ function LoveLetterScreen({ onBack }: { onBack: () => void }) {
                   controls
                   className="w-full h-48 object-cover"
                   poster="/IMG_20250518_201136.jpg"
-                  onError={() =>
-                    console.error(
-                      "Error loading video 1: /VID_20250823_152404726.mp4"
-                    )
-                  }
+                  onError={(e) => {
+                    console.error("Error loading video 1: /Snapchat-1780592114.mp4");
+                    // Ocultar el video si no se puede cargar
+                    (e.target as HTMLVideoElement).style.display = 'none';
+                  }}
                   onLoadStart={() => console.log("Loading video 1")}
+                  preload="metadata"
                 >
-                  <source src="/VID_20250823_152404726.mp4" type="video/mp4" />
+                  <source src="/Snapchat-1780592114.mp4" type="video/mp4" />
                   Tu navegador no soporta el elemento video.
                 </video>
               </div>
@@ -422,12 +431,13 @@ function LoveLetterScreen({ onBack }: { onBack: () => void }) {
                   controls
                   className="w-full h-48 object-cover"
                   poster="/PXL_20250823_151835362.jpg"
-                  onError={() =>
-                    console.error(
-                      "Error loading video 2: /VID-20250804-WA0000.mp4"
-                    )
-                  }
+                  onError={(e) => {
+                    console.error("Error loading video 2: /VID-20250804-WA0000.mp4");
+                    // Ocultar el video si no se puede cargar
+                    (e.target as HTMLVideoElement).style.display = 'none';
+                  }}
                   onLoadStart={() => console.log("Loading video 2")}
+                  preload="metadata"
                 >
                   <source src="/VID-20250804-WA0000.mp4" type="video/mp4" />
                   Tu navegador no soporta el elemento video.
