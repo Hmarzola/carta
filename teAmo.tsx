@@ -118,12 +118,10 @@ function PasswordScreen({
   return (
     <div className="min-h-screen flex items-center justify-center p-2 sm:p-4">
       <div
-        className={`bg-white/90 rounded-3xl p-4 sm:p-8 md:p-10 max-w-md w-full border border-white mx-2 ${
+        className={`bg-white/90 rounded-3xl p-4 sm:p-8 md:p-10 max-w-md w-full border border-white mx-2 relative ${
           shake ? "" : ""
         }`}
       >
-        <div className="absolute inset-0 pointer-events-none" />
-
         {/* Romantic Image */}
         <div className="text-center mb-6 sm:mb-8">
           <div className="w-full max-w-xs sm:max-w-sm h-40 sm:h-48 mx-auto mb-4 sm:mb-6 rounded-3xl overflow-hidden  border-4 border-white/50 relative">
@@ -168,26 +166,26 @@ function PasswordScreen({
             <button
               key={num}
               onClick={() => onDigit(num.toString())}
-              className="bg-white/95  text-gray-800 font-bold py-3 sm:py-4 md:py-5 px-3 sm:px-4 rounded-2xl  border border-white/50 "
+              className="bg-white text-gray-800 font-bold py-3 sm:py-4 md:py-5 px-3 sm:px-4 rounded-2xl border border-gray-300 cursor-pointer"
             >
               <span className="text-xl sm:text-2xl">{num}</span>
             </button>
           ))}
           <button
             onClick={onCheck}
-            className="bg-purple-100   text-white font-bold py-3 sm:py-4 md:py-5 px-3 sm:px-4 rounded-2xl  border border-white/30"
+            className="bg-green-500 text-white font-bold py-3 sm:py-4 md:py-5 px-3 sm:px-4 rounded-2xl border border-green-600 cursor-pointer"
           >
             <span className="text-xl sm:text-2xl">✓</span>
           </button>
           <button
             onClick={() => onDigit("0")}
-            className="bg-white/95  text-gray-800 font-bold py-3 sm:py-4 md:py-5 px-3 sm:px-4 rounded-2xl  border border-white/50 "
+            className="bg-white text-gray-800 font-bold py-3 sm:py-4 md:py-5 px-3 sm:px-4 rounded-2xl border border-gray-300 cursor-pointer"
           >
             <span className="text-xl sm:text-2xl">0</span>
           </button>
           <button
             onClick={onDelete}
-            className="bg-purple-100   text-white font-bold py-3 sm:py-4 md:py-5 px-3 sm:px-4 rounded-2xl  border border-white/30"
+            className="bg-red-500 text-white font-bold py-3 sm:py-4 md:py-5 px-3 sm:px-4 rounded-2xl border border-red-600 cursor-pointer"
           >
             <span className="text-xl sm:text-2xl">⌫</span>
           </button>
