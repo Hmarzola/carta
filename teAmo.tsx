@@ -444,23 +444,50 @@ function LoveLetterScreen({ onBack }: { onBack: () => void }) {
             </p>
           </div>
 
-          {/* YouTube Song Section */}
+          {/* Audio Section with YouTube Link */}
           <div className="mb-8">
-            <h4 className="text-2xl font-bold text-purple-600 text-center mb-4">
+            <h4 className="text-xl sm:text-2xl font-bold text-purple-600 text-center mb-4">
               🎵 Una Canción Especial Para Ti
             </h4>
-            <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-lg">
-              <iframe
-                src="https://www.youtube.com/embed/MldGX_mbS-o?autoplay=0&rel=0"
-                className="w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                title="Canción especial"
-              />
+
+            {/* Audio Player */}
+            <div className="bg-gradient-to-r from-purple-100 to-rose-100 rounded-2xl p-4 sm:p-6 border border-purple-200/50 shadow-lg mb-4">
+              <div className="flex items-center justify-center mb-4">
+                <Music className="w-6 h-6 text-purple-600 mr-2" />
+                <span className="text-purple-700 font-medium">
+                  🎶 MILO J - M.A.I
+                </span>
+              </div>
+              <audio controls className="w-full rounded-lg" preload="metadata">
+                <source
+                  src="./saim.co.za - MILO J - M.A.I (Video Oficial) (320 KBps).mp3"
+                  type="audio/mpeg"
+                />
+                Tu navegador no soporta el elemento de audio.
+              </audio>
             </div>
-            <p className="text-center text-purple-600 mt-3 font-medium">
-              💕 Esta canción me recuerda a ti 💕
-            </p>
+
+            {/* YouTube Link */}
+            <div className="text-center">
+              <a
+                href="https://www.youtube.com/watch?v=MldGX_mbS-o"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-4 sm:px-6 py-3 bg-red-500 hover:bg-red-600 text-white font-medium rounded-full transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+              >
+                <svg
+                  className="w-5 h-5 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                </svg>
+                Ver en YouTube
+              </a>
+              <p className="text-purple-600 mt-3 font-medium text-sm sm:text-base">
+                💕 Esta canción me recuerda a ti 💕
+              </p>
+            </div>
           </div>
 
           {/* Personal Video Container */}
