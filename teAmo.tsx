@@ -201,12 +201,22 @@ function PasswordScreen({
 
 function LoveLetterScreen({ onBack }: { onBack: () => void }) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [imageErrors, setImageErrors] = useState<Set<string>>(new Set());
 
   const photos = [
     { src: "/IMG_20250518_201136.jpg", alt: "Momento especial juntos" },
     { src: "/IMG_20250816_143902792_HDR_PORTRAIT.jpg", alt: "Retrato hermoso" },
     { src: "/PXL_20250823_151835362.jpg", alt: "Recuerdo inolvidable" },
   ];
+
+  const handleImageError = (src: string) => {
+    console.error(`Error loading image: ${src}`);
+    setImageErrors((prev) => new Set([...prev, src]));
+  };
+
+  const handleImageLoad = (src: string) => {
+    console.log(`Successfully loaded image: ${src}`);
+  };
 
   return (
     <>
@@ -307,8 +317,26 @@ function LoveLetterScreen({ onBack }: { onBack: () => void }) {
                   onClick={() => setSelectedImage(photo.src)}
                 >
                   <img
-                    src={photo.src || "/placeholder.svg"}
+                    src={photo.src}
                     alt={photo.alt}
+                    onError={(e) => {
+                      console.error(`Error loading image: ${photo.src}`);
+                      handleImageError(photo.src);
+                      (
+                        e.target as HTMLImageElement
+                      ).src = `data:image/svg+xml;base64,${btoa(`
+                        <svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+                          <rect width="100%" height="100%" fill="#f3f4f6"/>
+                          <text x="50%" y="45%" text-anchor="middle" font-family="Arial" font-size="16" fill="#6b7280">
+                            Imagen no disponible
+                          </text>
+                          <text x="50%" y="65%" text-anchor="middle" font-family="Arial" font-size="12" fill="#9ca3af">
+                            ${photo.alt}
+                          </text>
+                        </svg>
+                      `)}`;
+                    }}
+                    onLoad={() => handleImageLoad(photo.src)}
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -332,6 +360,25 @@ function LoveLetterScreen({ onBack }: { onBack: () => void }) {
             </p>
           </div>
 
+          {/* YouTube Song Section */}
+          <div className="mb-8">
+            <h4 className="text-2xl font-bold text-purple-600 text-center mb-4">
+              🎵 Una Canción Especial Para Ti
+            </h4>
+            <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-lg">
+              <iframe
+                src="https://www.youtube.com/embed/MldGX_mbS-o?autoplay=0&rel=0"
+                className="w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title="Canción especial"
+              />
+            </div>
+            <p className="text-center text-purple-600 mt-3 font-medium">
+              💕 Esta canción me recuerda a ti 💕
+            </p>
+          </div>
+
           {/* Personal Video Container */}
           <div className="mb-8">
             <h4 className="text-2xl font-bold text-purple-600 text-center mb-4">
@@ -342,6 +389,15 @@ function LoveLetterScreen({ onBack }: { onBack: () => void }) {
                 controls
                 className="w-full h-full object-cover"
                 poster="/IMG_20250816_143902792_HDR_PORTRAIT.jpg"
+                onError={() => {
+                  console.error("Error loading main video");
+                  console.log("Available videos:", [
+                    "/VID-20250528-WA0043.mp4",
+                    "/Snapchat-1780592114.mp4",
+                  ]);
+                }}
+                onLoadStart={() => console.log("Starting to load main video")}
+                onCanPlay={() => console.log("Main video can play")}
               >
                 <source src="/VID-20250528-WA0043.mp4" type="video/mp4" />
                 <source src="/Snapchat-1780592114.mp4" type="video/mp4" />
@@ -361,6 +417,12 @@ function LoveLetterScreen({ onBack }: { onBack: () => void }) {
                   controls
                   className="w-full h-48 object-cover"
                   poster="/IMG_20250518_201136.jpg"
+                  onError={() =>
+                    console.error(
+                      "Error loading video 1: /VID_20250823_152404726.mp4"
+                    )
+                  }
+                  onLoadStart={() => console.log("Loading video 1")}
                 >
                   <source src="/VID_20250823_152404726.mp4" type="video/mp4" />
                   Tu navegador no soporta el elemento video.
@@ -371,6 +433,12 @@ function LoveLetterScreen({ onBack }: { onBack: () => void }) {
                   controls
                   className="w-full h-48 object-cover"
                   poster="/PXL_20250823_151835362.jpg"
+                  onError={() =>
+                    console.error(
+                      "Error loading video 2: /VID-20250804-WA0000.mp4"
+                    )
+                  }
+                  onLoadStart={() => console.log("Loading video 2")}
                 >
                   <source src="/VID-20250804-WA0000.mp4" type="video/mp4" />
                   Tu navegador no soporta el elemento video.
